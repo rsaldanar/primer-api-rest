@@ -1,6 +1,6 @@
 # Como crear tu primera API REST con Spring Boot
 
-En esta guía, se explicará cómo crear una API-Rest utilizando Spring Boot. Spring Boot es un framework de Java que permite crear aplicaciones de manera rápida y sencilla. La intención es que tengas los conocimientos básicos para crear un API utilizando Spring.
+En esta guía, se explicará cómo crear una API-Rest utilizando Spring Boot. Spring Boot es un framework de Java que permite crear aplicaciones de manera rápida y sencilla. La intención es que tengas los conocimientos básicos para crear un API utilizando Spring.*
 
 # API-REST
 
@@ -176,7 +176,7 @@ Vamos a la parte práctica…
   ![Captura de pantalla 2023-03-28 a la(s) 8.59.00 p. m..png](resources/3.png)
 - 
 
-- Agregar SpringDoc al POM
+- Agregar SpringDoc al POM  
 
   Agregaremos una dependencia de un tercero en este caso el de la documentación Swagger desde MVN-Repository [`https://mvnrepository.com`](https://mvnrepository.com/)
 

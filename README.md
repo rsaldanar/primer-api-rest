@@ -170,17 +170,17 @@ Vamos a la parte práctica…
 
   Lo primero que debemos hacer es crear un nuevo proyecto en [`https://start.spring.io`](https://start.spring.io/) o tener el plugin de Spring initializr en nuestro IDE preferido.
 
-  ![Captura de pantalla 2023-03-28 a la(s) 10.15.33 p. m..png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d31c4fa4-ea14-4f68-b7e2-a8151dea903b/Captura_de_pantalla_2023-03-28_a_la(s)_10.15.33_p._m..png)
-
+  ![Captura de pantalla 2023-03-28 a la(s) 10.15.33 p. m..png](resources/2.png)
   Generamos el proyecto, lo descargamos y lo abrimos con nuestro IDE.
 
-  ![Captura de pantalla 2023-03-28 a la(s) 8.59.00 p. m..png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/579d60d9-a5f6-4cba-b021-2de6fefe17c6/Captura_de_pantalla_2023-03-28_a_la(s)_8.59.00_p._m..png)
+  ![Captura de pantalla 2023-03-28 a la(s) 8.59.00 p. m..png](resources/3.png)
+- 
 
 - Agregar SpringDoc al POM
 
   Agregaremos una dependencia de un tercero en este caso el de la documentación Swagger desde MVN-Repository [`https://mvnrepository.com`](https://mvnrepository.com/)
 
-  ![Captura de pantalla 2023-03-28 a la(s) 10.28.52 a. m..png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7db1653d-ad7d-4cc4-9384-d5333318d1ef/Captura_de_pantalla_2023-03-28_a_la(s)_10.28.52_a._m..png)
+  ![Captura de pantalla 2023-03-28 a la(s) 10.28.52 a. m..png](resources/4.png)
 
     ```
     <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
@@ -193,13 +193,13 @@ Vamos a la parte práctica…
 
   Luego lo agregamos en el POM…
 
-  ![Captura de pantalla 2023-03-28 a la(s) 10.54.53 a. m..png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c5c601ae-61ae-41c3-b149-8ddc04f7957d/Captura_de_pantalla_2023-03-28_a_la(s)_10.54.53_a._m..png)
+  ![Captura de pantalla 2023-03-28 a la(s) 10.54.53 a. m..png](resources/5.png)
 
 - Configuración del proyecto
 
   Configuraremos el archivo application.properties que esta en la ruta `src/main/resources`
 
-  ![Captura de pantalla 2023-03-28 a la(s) 2.12.01 p. m..png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/158aa6b1-ba79-465c-a217-71e99aeddab5/Captura_de_pantalla_2023-03-28_a_la(s)_2.12.01_p._m..png)
+  ![Captura de pantalla 2023-03-28 a la(s) 2.12.01 p. m..png](resources/6.png)
 
   dentro del archivo creamos las configuraciones para la la Documentación utilizando Swagger, la conectividad a la BD en este caso H2 para la persistencia de los datos.
 
@@ -263,12 +263,13 @@ Vamos a la parte práctica…
       ```
 
 
-    Todo esto se ve así en mi caso utilizando properties
+Todo esto se ve así en mi caso utilizando properties
     
-    ![Captura de pantalla 2023-03-28 a la(s) 9.04.33 p. m..png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2dec0de3-dfb9-4a16-97d5-657a2120bb02/Captura_de_pantalla_2023-03-28_a_la(s)_9.04.33_p._m..png)
+![Captura de pantalla 2023-03-28 a la(s) 9.04.33 p. m..png](resources/7.png)
 
 
-## Paso 2: Creación de la clases
+
+## Paso 2: Creación de las clases
 
 Una vez que hemos configurado nuestro proyecto, Creamos los paquetes y nuestras clases.
 

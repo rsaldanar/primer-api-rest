@@ -80,74 +80,52 @@ Por último, cabe destacar que Spring Boot cuenta con una amplia comunidad de de
 
 Para crear un API REST con Spring Boot, se utilizan una serie de anotaciones que permiten mapear las solicitudes HTTP a métodos específicos del controlador y definir el comportamiento de estos métodos. A continuación se describen algunas de las anotaciones más comunes:
 
-- `@SpringBootApplication`: Esta anotación indica que la clase es una aplicación Spring Boot. Esta anotación combina otras tres anotaciones: `@Configuration`, `@EnableAutoConfiguration` y `@ComponentScan`.
-  - `@Configuration` : Esta anotación se utiliza para indicar que una clase es una fuente de configuración de Spring. Esta anotación se utiliza en conjunto con otras anotaciones, como `@Bean` y `@ComponentScan`, para definir la configuración de la aplicación.
+continuación se describen algunas de las anotaciones más comunes:
 
-    La anotación `@Configuration` se utiliza en una clase que contiene métodos anotados con `@Bean`, que definen los objetos que se gestionan mediante el contenedor de inversión de control de Spring. Este contenedor se encarga de la creación y gestión de los objetos, lo que permite que los desarrolladores se centren en la lógica de negocio.
+- `@SpringBootApplication`: Esta anotación indica que la clase es una aplicación Spring Boot.  Combina otras tres anotaciones: `@Configuration`, `@EnableAutoConfiguration` y `@ComponentScan`.
+  - `@Configuration` : Se utiliza para indicar que una clase es una fuente de configuración de Spring. Esta anotación se utiliza en conjunto con otras anotaciones, como `@Bean` y `@ComponentScan`, para definir la configuración de la aplicación.
+
+    La anotación `@Configuration` se utiliza en una clase que contiene métodos anotados con `@Bean`, que definen los objetos que se gestionan mediante el contenedor de inversión de control de Spring.
 
     En resumen, la anotación `@Configuration` se utiliza para indicar que una clase es una fuente de configuración de Spring, y se utiliza en conjunto con otras anotaciones para definir la configuración de la aplicación.
 
+  - `@EnableAutoConfiguration`: Es una de las anotaciones más importantes de Spring Boot, ya que se encarga de configurar automáticamente la aplicación en función de las dependencias incluidas en el proyecto.
+  - `@ComponentScan`: Es una de las más importantes en Spring Boot, ya que se utiliza para buscar y cargar automáticamente los beans dentro del contexto de Spring. Esta anotación escanea el paquete actual y sus subpaquetes en busca de clases anotadas con `@Component`, `@Service`, `@Repository` o `@Controller`, y las registra como beans en el contexto de Spring.
+- Entity
+  - `@Entity`: Anotación para indicar que una clase representa una entidad en la base de datos.
 
-    Las anotaciones son una parte fundamental de Spring Boot, ya que permiten la configuración y personalización de la aplicación de forma sencilla y eficiente. Algunas de las anotaciones más utilizadas en Spring Boot son:
-    
-    - `@EnableAutoConfiguration`: Es una de las anotaciones más importantes de Spring Boot, ya que se encarga de configurar automáticamente la aplicación en función de las dependencias incluidas en el proyecto. Esta anotación utiliza la reflexión y la información de la clase del proyecto para detectar las dependencias y configurar la aplicación de forma automática.
-        
-        Por ejemplo, si se incluye la dependencia `spring-boot-starter-web`, que proporciona un servidor web embebido y las funcionalidades básicas para el desarrollo de aplicaciones web, la anotación `@EnableAutoConfiguration` se encargará de configurar automáticamente la aplicación con estas funcionalidades.
-        
-        En resumen, la anotación `@EnableAutoConfiguration` es esencial para el desarrollo de aplicaciones Spring Boot, ya que permite la configuración automática de la aplicación en función de las dependencias incluidas en el proyecto.
-        
-    - `@ComponentScan`: Es una de las más importantes en Spring Boot, ya que se utiliza para buscar y cargar automáticamente los beans dentro del contexto de Spring. Esta anotación escanea el paquete actual y sus subpaquetes en busca de clases anotadas con @Component, @Service, @Repository o @Controller, y las registra como beans en el contexto de Spring.
-        
-        Además, @ComponentScan también puede configurarse para buscar beans en paquetes específicos usando el atributo "basePackages" o "basePackageClasses". Por ejemplo, si queremos buscar beans en el paquete "com.example.beans", podemos usar la siguiente configuración:
-        
-        ```java
-        @ComponentScan(basePackages = "com.example.beans")
-        ```
-        
-        También podemos usar varias rutas de paquetes separadas por comas:
-        
-        ```java
-        @ComponentScan(basePackages = {"com.example.beans", "com.example.services"})
-        ```
-        
-        Otra forma de configurar @ComponentScan es usar el atributo "basePackageClasses" para buscar beans en paquetes que contienen clases específicas. Por ejemplo, si tenemos una clase "com.example.beans.BeanA", podemos usar la siguiente configuración para buscar beans en el paquete que contiene esta clase:
-        
-        ```java
-        @ComponentScan(basePackageClasses = BeanA.class)
-        ```
+    Esta anotación se utiliza en conjunto con JPA (Java Persistence API) para definir la estructura de la tabla en la base de datos y las relaciones entre diferentes entidades.
 
-- `@Entity`: Anotación para indicar que una clase representa una entidad en la base de datos. Esta anotación se utiliza en conjunto con JPA (Java Persistence API) para definir la estructura de la tabla en la base de datos y las relaciones entre diferentes entidades.
+    En lo interno podemos ver:
 
-  En lo interno podemos ver:
+    - `@Id`: Indicar que un campo de la clase es la clave primaria de la entidad. Esta anotación se utiliza en conjunto con `@Entity` y permite definir la clave primaria de la tabla en la base de datos.
+    - `@GeneratedValue`: Que el valor de un campo de la clase será generado automáticamente por la base de datos. Esta anotación se utiliza en conjunto con `@Id` y permite definir el tipo de generación.
+    - `@Column`: Es para especificar el nombre de la columna en la base de datos que se va a mapear con el atributo de la clase. Además, permite indicar otras características de la columna, como su longitud máxima, si puede ser nula, entre otras.
+    - `@Table` ****: Especificar el nombre de la tabla en la BD que se va a mapear con la entidad.
+    - `@Temporal` ****: Se utiliza para indicar que un atributo de la entidad es de tipo fecha o tiempo. Permite especificar el formato en el que se va a almacenar la fecha en la base de datos.
+    - `@ManyToOne` ****: Relaciones de muchos a uno entre entidades. Permite especificar la entidad dueña de la relación y la columna que se va a utilizar como clave foránea.
+    - `@ManyToMany` ****: Relaciones de muchos a muchos entre entidades. Permite especificar la tabla intermedia que se va a utilizar para almacenar la relación y las columnas que se van a utilizar como claves foráneas.
+    - `@JoinColumn` ****: Se utiliza en combinación con las anotaciones `@ManyToOne` y `@ManyToMany` para especificar el nombre de la columna que se va a utilizar como clave foránea en la entidad relacionada.
+- Repository
+  - `@Repository`: Anotación para indicar que una clase es un repositorio de datos. Esta anotación se utiliza en conjunto con Spring Data para definir una interfaz entre la capa de acceso a datos y la capa de servicio, y proporciona métodos para realizar operaciones CRUD (Create, Read, Update, Delete) en la base de datos.
 
-  - `@Id`: Anotación para indicar que un campo de la clase es la clave primaria de la entidad. Esta anotación se utiliza en conjunto con `@Entity` y permite definir la clave primaria de la tabla en la base de datos.
-  - `@GeneratedValue`: anotación para indicar que el valor de un campo de la clase será generado automáticamente por la base de datos. Esta anotación se utiliza en conjunto con `@Id` y permite definir el tipo de generación (por ejemplo, secuencia o identidad) y otros parámetros de configuración.
-  - `@Column`: Esta anotación se utiliza para especificar el nombre de la columna en la base de datos que se va a mapear con el atributo de la clase. Además, permite indicar otras características de la columna, como su longitud máxima, si puede ser nula, entre otras.
-  - `@Table` ****: Con esta anotación se puede especificar el nombre de la tabla en la base de datos que se va a mapear con la entidad.
-  - `@Temporal` ****: Se utiliza para indicar que un atributo de la entidad es de tipo fecha o tiempo. Permite especificar el formato en el que se va a almacenar la fecha en la base de datos.
-  - `@ManyToOne` ****: Esta anotación se utiliza en relaciones de muchos a uno entre entidades. Permite especificar la entidad dueña de la relación y la columna que se va a utilizar como clave foránea.
-  - `@ManyToMany` ****: Esta anotación se utiliza en relaciones de muchos a muchos entre entidades. Permite especificar la tabla intermedia que se va a utilizar para almacenar la relación y las columnas que se van a utilizar como claves foráneas.
-  - `@JoinColumn` ****: Se utiliza en combinación con las anotaciones `@ManyToOne` y `@ManyToMany` para especificar el nombre de la columna que se va a utilizar como clave foránea en la entidad relacionada.
-- `@Repository`: Anotación para indicar que una clase es un repositorio de datos. Esta anotación se utiliza en conjunto con Spring Data para definir una interfaz entre la capa de acceso a datos y la capa de servicio, y proporciona métodos para realizar operaciones CRUD (Create, Read, Update, Delete) en la base de datos.
+    Las anotaciones más comunes dentro de `@Repository` son:
 
-  Las anotaciones más comunes dentro de `@Repository` son:
+    - `@Transactional`: Indica que todos los métodos de la clase deben ser ejecutados dentro de una transacción. Esto puede ser útil para mantener la integridad de los datos en situaciones de alta concurrencia.
+    - `@Query`: Podemos definir consultas personalizadas en JPQL (Java Persistence Query Language) o SQL nativo.
+    - `@EntityGraph`: Permite definir una consulta con un subconjunto de atributos de una entidad. Esto puede mejorar el rendimiento de la aplicación al reducir la cantidad de datos que se deben transferir desde la base de datos.
+- RestController
+- - `@RestController`: Indica que la clase es un controlador REST.
 
-  - `@Transactional`: Esta anotación indica que todos los métodos de la clase deben ser ejecutados dentro de una transacción. Esto puede ser útil para mantener la integridad de los datos en situaciones de alta concurrencia.
-  - `@Query`: Con esta anotación podemos definir consultas personalizadas en JPQL (Java Persistence Query Language) o SQL nativo.
-  - `@Modifying`: Esta anotación indica que el método modificará los datos en la base de datos. Es importante tener en cuenta que para que esto funcione correctamente, la anotación `@Transactional` también debe ser utilizada.
-  - `@EntityGraph`: Esta anotación nos permite definir una consulta con un subconjunto de atributos de una entidad. Esto puede mejorar el rendimiento de la aplicación al reducir la cantidad de datos que se deben transferir desde la base de datos.
+    Esta anotación combina las funcionalidades de `@Controller` y `@ResponseBody`, lo que significa que la respuesta del controlador se devuelve directamente como una respuesta HTTP, sin necesidad de usar una vista.
 
-  Es importante tener en cuenta que estas anotaciones no son exclusivas de `@Repository`, y pueden ser utilizadas en otras partes de la aplicación.
-
-- `@RestController`: Anotación para indicar que la clase es un controlador REST. Esta anotación combina las funcionalidades de `@Controller` y `@ResponseBody`, lo que significa que la respuesta del controlador se devuelve directamente como una respuesta HTTP, sin necesidad de usar una vista.
-  - `@RequestMapping`: Anotación para mapear las solicitudes HTTP a métodos específicos del controlador. Esta anotación se puede aplicar a nivel de clase o de método, y permite definir el URI y los verbos HTTP que se deben usar para acceder a cada método del controlador.
-  - `@GetMapping`, `@PostMapping`, `@PutMapping` y `@DeleteMapping` anotaciones para mapear solicitudes HTTP GET, POST, PUT y DELETE respectivamente, a métodos específicos del controlador. Estas anotaciones son una forma más específica de `@RequestMapping` que permite definir el verbo HTTP que se debe usar para acceder a cada método.
-  - `@RequestBody`: Anotación para indicar que un parámetro del método debe vincularse con el cuerpo de la solicitud HTTP. Esta anotación permite recibir datos en formato JSON o XML en el cuerpo de la solicitud, y convertirlos automáticamente en un objeto Java.
-  - `@PathVariable`: Anotación para indicar que un parámetro del método debe vincularse con una variable en la URL de la solicitud HTTP. Esta anotación permite recibir valores dinámicos en la URL, como identificadores de recursos o nombres de usuarios.
-  - `@RequestParam`: Anotación para indicar que un parámetro del método debe vincularse con un parámetro en la URL de la solicitud HTTP. Esta anotación permite recibir valores estáticos en la URL, como parámetros de búsqueda o filtros.
-  - `@ResponseStatus`: Anotación para especificar el código de estado HTTP que se debe devolver como respuesta a la solicitud HTTP. Esta anotación permite personalizar la respuesta HTTP en función del resultado de la operación, por ejemplo, devolviendo un código 404 si el recurso no existe.
-  - `@ExceptionHandler`: Anotación para indicar que un método manejará excepciones específicas que se produzcan en el controlador. Esta anotación permite definir un método de recuperación para errores específicos, como errores de validación o errores de acceso a la base de datos.
-
+  - `@RequestMapping`: Para mapear las solicitudes HTTP a métodos específicos del controlador. Se puede aplicar a nivel de clase o de método, y permite definir el URI y los verbos HTTP que se deben usar para acceder a cada método del controlador.
+  - `@GetMapping`, `@PostMapping`, `@PutMapping` y `@DeleteMapping` que son para mapear solicitudes HTTP GET, POST, PUT y DELETE respectivamente, a métodos específicos del controlador.
+  - `@RequestBody`: Indica que un parámetro del método debe vincularse con el cuerpo de la solicitud HTTP. Permite recibir datos en formato JSON o XML en el cuerpo de la solicitud, y convertirlos automáticamente en un objeto Java.
+  - `@PathVariable`: Indica que un parámetro del método debe vincularse con una variable en la URL de la solicitud HTTP. Esta anotación permite recibir valores dinámicos en la URL, como identificadores de recursos o nombres de usuarios.
+  - `@RequestParam`: Indica que un parámetro del método debe vincularse con un parámetro en la URL de la solicitud HTTP. Permite recibir valores estáticos en la URL, como parámetros de búsqueda o filtros.
+  - `@ResponseStatus`: Anotación para especificar el código de estado HTTP que se debe devolver como respuesta a la solicitud HTTP. Personaliza la respuesta HTTP en función del resultado de la operación, por ejemplo, devolviendo un código 404 si el recurso no existe.
+  - `@ExceptionHandler`: Se utiliza para indicar que un método manejará excepciones específicas que se produzcan en el controlador. Permite definir un método de recuperación para errores específicos, como errores de validación o errores de acceso a la base de datos.
 # Requerimientos
 
 Java 17

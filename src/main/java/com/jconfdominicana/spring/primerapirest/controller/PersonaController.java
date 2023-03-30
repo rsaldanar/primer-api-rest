@@ -26,22 +26,18 @@ public class PersonaController {
     @Autowired
     PersonaRepository personaRepository;
 
-    @GetMapping("/getpersonas")
+    @GetMapping("/get")
     @ResponseStatus(HttpStatus.OK)
     public List<Persona> getAllPersona(){
         return (List<Persona>) personaRepository.findAll();
     }
 
-    @GetMapping("/getname/{name}")
+    @GetMapping("/get/{name}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Persona> getPersonaByName(@PathVariable("name") String name){
-        Optional<Persona> optionalPersona = personaRepository.findByName(name);
-        if (!optionalPersona.isPresent()){
-            return ResponseEntity.notFound().build();
-        }
-        else {
-            return ResponseEntity.ok(optionalPersona.get());
-        }
+        return personaRepository.findByName(name).map(persona ->
+                ResponseEntity.ok(persona)).orElseGet(()->
+                ResponseEntity.notFound().build());
     }
 
     @PostMapping("/save")

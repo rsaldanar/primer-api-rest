@@ -17,16 +17,22 @@ import java.util.List;
  * @history:
  */
 @RestController
-@RequestMapping("/api/utilapi/sexo")
+@RequestMapping("/api/v1/sexo")
 public class SexoController {
 
     @Autowired
     SexoRepository sexoRepository;
 
-    @GetMapping("/getsexos")
+    @GetMapping("/get")
     @ResponseStatus(HttpStatus.OK)
     public List<Sexo> getAllSexo(){
         return (List<Sexo>) sexoRepository.findAll();
+    }
+
+    @GetMapping("/id/{sexo_id}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Sexo> sexoActivo(@PathVariable("sexo_id") Long sexoId){
+        return (List<Sexo>) sexoRepository.findByStatus(true, sexoId);
     }
 
     @PostMapping("/save")
